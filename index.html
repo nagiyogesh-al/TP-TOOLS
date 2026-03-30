@@ -1,0 +1,276 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TP Tools &amp; Group | Precision Engineering</title>
+<style>
+:root {
+  --logo-blue: #1b4b9b;
+  --logo-red: #e31e24;
+  --industrial-gold: #d4af37; 
+  --dark: #050a0f; 
+  --glass: rgba(255,255,255,0.07);
+}
+
+body {
+  margin: 0; font-family: 'Segoe UI', sans-serif; color: #fff;
+  background: linear-gradient(135deg, #050a0f 0%, #001a33 100%);
+  background-attachment: fixed; line-height: 1.7;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 10px;
+  padding: 20px 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px);
+  z-index: 1000; border-bottom: 4px solid var(--logo-red);
+}
+
+nav button {
+  padding: 12px 20px; border: 1px solid var(--logo-blue); border-radius: 4px;
+  background: transparent; color: white; cursor: pointer; font-weight: 800;
+  text-transform: uppercase; transition: 0.3s; font-size: 13px;
+}
+
+nav button:hover, nav button.active-btn {
+  background: var(--logo-red); border-color: var(--logo-red); box-shadow: 0 0 20px rgba(227,30,36,0.5);
+}
+
+/* ===== LOGO CLOCK ===== */
+.logo-machine-wrap {
+  width: 280px; height: 280px; 
+  border: 10px solid var(--logo-blue); 
+  border-radius: 50%;
+  margin: 40px auto; position: relative; 
+  background: #fff;
+  box-shadow: 0 0 40px var(--logo-blue), inset 0 0 20px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.bg-logo { width: 85%; height: 85%; object-fit: contain; opacity: 0.9; }
+
+.needle { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom; border-radius: 5px; }
+.h { width: 10px; height: 70px; background: var(--logo-blue); z-index: 3; }
+.m { width: 6px; height: 100px; background: var(--logo-red); z-index: 2; }
+.s { width: 3px; height: 120px; background: #333; z-index: 1; }
+
+.center-pin {
+  position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; 
+  background: #333; border: 3px solid #fff; border-radius: 50%; 
+  transform: translate(-50%,-50%); z-index: 10;
+}
+
+/* ===== LAYOUT ===== */
+.section { display: none; padding: 140px 20px 80px; animation: fadeIn 0.8s; text-align: center;}
+.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.card {
+  background: var(--glass); padding: 60px; border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.1); max-width: 1250px; margin: auto;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px; }
+.box { background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border-top: 4px solid var(--logo-red); text-align: left; }
+.img-box { width: 100%; height: 280px; border-radius: 15px; object-fit: cover; border: 2px solid var(--logo-blue); margin-bottom: 20px; }
+
+h1 { font-size: 4rem; margin: 0; letter-spacing: -2px; }
+
+/* GOLDEN GLOW HEADINGS */
+h2, h3 { 
+  color: var(--industrial-gold); 
+  margin-bottom: 40px; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+table { width: 100%; border-collapse: collapse; margin: 40px 0; }
+th, td { padding: 20px; border: 1px solid rgba(255,255,255,0.1); text-align: left; }
+th { background: var(--logo-blue); color: white; }
+
+/* CUSTOMER GRID */
+.cust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; margin-top: 40px; }
+.cust-card {
+  background: white; width: 260px; height: 140px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; padding: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.cust-card img { max-width: 90%; max-height: 80%; object-fit: contain; }
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <button onclick="show('home', this)" class="">Home</button>
+  <button onclick="show('about', this)" class="">Expertise</button>
+  <button onclick="show('machines', this)" class="">Production</button>
+  <button onclick="show('customers', this)" class="">Our Customers</button>
+  <button onclick="show('gallery', this)" class="">Showcase</button>
+  <button onclick="show('contact', this)" class="active-btn">Contact</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="section">
+  <div class="card">
+    <h1 style="color:white">TP <span style="color:var(--logo-red)">TOOLS</span> &amp; GROUP</h1>
+    <div class="logo-machine-wrap">
+      <img src="logo.png" class="bg-logo">
+      <div class="needle h" id="h" style="transform: translateX(-50%) rotate(335.5deg);"></div>
+      <div class="needle m" id="m" style="transform: translateX(-50%) rotate(66deg);"></div>
+      <div class="needle s" id="s" style="transform: translateX(-50%) rotate(300deg);"></div>
+      <div class="center-pin"></div>
+    </div>
+    <h2>Engineering Precision In Every Micron</h2>
+    <p style="font-size: 1.3rem; max-width: 950px; margin: auto;">TP Tools &amp; Group stands as a premier hub for high-precision manufacturing. From Tier-1 automotive components to specialized industrial fasteners, we deliver engineered excellence with an unwavering commitment to quality and timeline. Our state-of-the-art facility in Faridabad is equipped to handle complex blueprints and turn them into physical reality.</p>
+    
+    <div class="grid">
+        <div class="box"><h3>🛡️ Quality First</h3><p>Every single batch undergoes a 3-stage inspection process. We utilize digital profile projectors and high-accuracy micrometers to ensure 100% compliance with your technical drawings.</p></div>
+        <div class="box"><h3>⚡ Rapid Delivery</h3><p>Time is money in manufacturing. Our optimized production workflows and dedicated logistics team ensure that your orders reach you on time, every time, without compromise.</p></div>
+        <div class="box"><h3>🏗️ Massive Capacity</h3><p>Equipped with over 20+ high-end CNC and Traub machines, our facility is built to scale. Whether you need 1,000 units or 100,000, we have the power to deliver mass volume with precision.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT/EXPERTISE -->
+<div id="about" class="section">
+    <div class="card">
+      <h2>Why Choose TP Tools &amp; Group?</h2>
+      <div style="display:flex; flex-wrap:wrap; gap:50px; text-align:left;">
+          <div style="flex:1.5; min-width:350px;">
+              <h3>Industrial Legacy &amp; Philosophy</h3>
+              <p>With over 15 years of deep-rooted experience in the industrial hub of Haryana, TP Tools has evolved from a small workshop to a multi-vertical manufacturing group. We operate with a "Zero-Defect" philosophy, integrating Kaizen and 5S methodologies into our daily operations.</p>
+              <p>Our team consists of expert engineers and machine operators who understand that in precision engineering, even a 10-micron error is unacceptable. We don't just "cut metal"—we solve engineering challenges for our global partners.</p>
+              
+              <h3 style="margin-top:40px;">Specialized Sectors:</h3>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-weight:bold; color:var(--industrial-gold);">
+                  <div>➤ Automotive OEM Support</div>
+                  <div>➤ Aerospace Fluid Systems</div>
+                  <div>➤ Medical Surgical Hardware</div>
+                  <div>➤ Agriculture Hydraulics</div>
+                  <div>➤ High-Speed Rail Fasteners</div>
+                  <div>➤ Energy Sector Fittings</div>
+              </div>
+          </div>
+          <div style="flex:1; min-width:350px;">
+            <img src="team.jpg" class="img-box" style="height:350px;">
+            <div class="box" style="border-top-color: var(--logo-blue); background:rgba(255,255,255,0.05);">
+                <h3>Global Standards</h3>
+                <p>We are currently working towards IATF 16949 certification to further strengthen our position as a global Tier-1 automotive supplier.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<!-- PRODUCTION/MACHINES -->
+<div id="machines" class="section">
+    <div class="card">
+      <h2>Technical Capability &amp; Infrastructure</h2>
+      <p style="font-size:1.1rem; margin-bottom:30px;">Our workshop floor is a synergy of Japanese precision and German durability. We constantly upgrade our machine fleet to stay ahead of the technical curve.</p>
+      <img src="workshop.jpg" class="img-box" style="height:400px; width:100%; object-position:center;">
+      
+      <table>
+        <thead><tr><th>Machine Category</th><th>Technical Output / Capabilities</th><th>Fleet Count</th></tr></thead>
+        <tbody>
+          <tr><td>CNC Turning Centers</td><td>High-speed shafts, flanged components, and complex circular profiling</td><td>07 Units</td></tr>
+          <tr><td>Automatic Traub</td><td>Mass production of precision fasteners, pins, and small-scale fittings</td><td>10 Units</td></tr>
+          <tr><td>VMC (3-Axis)</td><td>Complex 3D profiling, block milling, and multi-surface drilling</td><td>03 Units</td></tr>
+          <tr><td>Centerless Grinders</td><td>Surface finishing up to Ra 0.2 micron smoothness</td><td>02 Units</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid">
+          <div class="box"><h3>Raw Materials</h3><p>We specialize in machining Stainless Steel (304, 316), Aluminum 6061, Brass, Carbon Steel, and specialized Industrial Polymers like PEEK and Delrin.</p></div>
+          <div class="box"><h3>Quality Lab</h3><p>Our lab is equipped with 2D Profile Projectors, Digital Height Gauges, Hardness Testers, and Roughness Testers to verify every parameter.</p></div>
+      </div>
+    </div>
+</div>
+
+<!-- CUSTOMERS -->
+<div id="customers" class="section">
+    <div class="card">
+      <h2>Our Few Major Customers</h2>
+      <p style="font-size:1.2rem; margin-bottom:40px;">Trusted by global giants to deliver safety-critical and high-performance components.</p>
+      <div class="cust-row">
+        <div class="cust-card"><img src="customer1.png" alt="Gates"></div>
+        <div class="cust-card"><img src="customer2.png" alt="Kongsberg"></div>
+        <div class="cust-card"><img src="customer3.png" alt="Imperial"></div>
+        <div class="cust-card"><img src="customer4.png" alt="Rani"></div>
+      </div>
+      <div style="margin-top:60px; text-align:left; padding:30px; background:rgba(255,255,255,0.02); border-radius:15px; border:1px solid rgba(255,255,255,0.1);">
+          <h3>Client Testimonials &amp; Feedback</h3>
+          <p>"TP Tools has been our consistent supplier for hydraulic fittings for the past 5 years. Their quality and adherence to delivery timelines are commendable." - <i>Industrial Procurement Lead</i></p>
+          <p>"Exceptional response time for prototyping and bulk scalability. A highly recommended manufacturing partner." - <i>Automotive OEM Partner</i></p>
+      </div>
+    </div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="section">
+  <div class="card">
+    <h2>Project &amp; Facility Showcase</h2>
+    <p style="margin-bottom:40px;">A transparent look into our manufacturing floor, quality control labs, and finished engineering products.</p>
+    <div class="grid">
+      <div><img src="workshop.jpg" class="img-box"><h3>CNC Production Bay</h3><p>Where high-tech machines meet skilled manpower.</p></div>
+      <div><img src="parts.jpg" class="img-box"><h3>Precision Parts</h3><p>Components engineered to 0.005mm accuracy.</p></div>
+      <div><img src="quality.jpg" class="img-box"><h3>Quality Control</h3><p>Ensuring zero defects before final dispatch.</p></div>
+      <div><img src="team.jpg" class="img-box"><h3>Engineering Hub</h3><p>Our management and design center.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="section active">
+  <div class="card">
+    <h2>Global Inquiries &amp; Support</h2>
+    <div style="display:flex; flex-wrap:wrap; gap:40px; text-align:left;">
+      <div style="flex:1; min-width:300px;">
+        <h3>Direct Communication</h3>
+        <p><b>Headquarters:</b> Plot No. 45, Industrial Hub, Faridabad, Haryana, India</p>
+        <p><b>Sales WhatsApp:</b> <a href="https://wa.me" style="color:var(--logo-red); font-weight:bold; font-size:1.2rem;">+91 99999 99999</a></p>
+        <p><b>Corporate Email:</b> <span style="color:var(--industrial-gold)">sales@tptoolsgroup.com</span></p>
+        
+        <div class="box" style="margin-top:30px; background:rgba(0,0,0,0.3);">
+            <h3>Working Hours</h3>
+            <p>Monday - Saturday: 09:00 AM - 07:00 PM<br>Sunday: Factory Closed (Support available via Email)</p>
+        </div>
+        <p style="margin-top:20px; font-style:italic; color:#888;">*For urgent RFQ (Request for Quote), please include your technical drawings (CAD/PDF) in your email for a faster response.</p>
+      </div>
+
+      <!-- ✅ ORIGINAL MAP CODE (UNTOUCHED) -->
+      <div style="flex:2; height:400px; border-radius:20px; overflow:hidden; border:2px solid var(--logo-blue);">
+     <iframe 
+  src="https://maps.google.com/maps?q=Faridabad%2C%20Haryana%2C%20India&output=embed"
+  width="100%" 
+  height="100%" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy">
+</iframe>    </div>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active-btn'));
+  if(btn) btn.classList.add('active-btn');
+  window.scrollTo(0,0);
+}
+
+function updateClock() {
+  const now = new Date();
+  if(document.getElementById('s')) document.getElementById('s').style.transform = `translateX(-50%) rotate(${now.getSeconds() * 6}deg)`;
+  if(document.getElementById('m')) document.getElementById('m').style.transform = `translateX(-50%) rotate(${now.getMinutes() * 6}deg)`;
+  if(document.getElementById('h')) document.getElementById('h').style.transform = `translateX(-50%) rotate(${now.getHours() * 30 + now.getMinutes()/2}deg)`;
+}
+setInterval(updateClock, 1000); updateClock();
+</script>
+
+
+
+</body></html>

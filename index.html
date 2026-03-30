@@ -11,6 +11,13 @@
   --glass: rgba(255,255,255,0.07);
 }
 
+  html, body {
+  height: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -61,7 +68,15 @@ nav button:hover, nav button.active-btn {
 }
 
 /* ===== LAYOUT ===== */
-.section { display: none; padding: 140px 20px 80px; animation: fadeIn 0.8s; text-align: center;}
+
+.section {
+   display: none;
+  padding: 140px 20px 80px;
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;   /* ✅ vertical scroll */
+  overflow-x: auto;   /* ✅ horizontal scroll */
+}
 .active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -115,7 +130,6 @@ th { background: var(--logo-blue); color: white; }
 
 <body>
 
-<nav>
  <nav>
   <button onclick="show('home', this)" class="active-btn">Home</button>
   <button onclick="show('about', this)" class="">Expertise</button>
